@@ -40,3 +40,42 @@ const perguntas = [
   { q: "39. Quanto é 6 x 5?", a: "30" },
   { q: "40. Quanto é 40 ÷ 8?", a: "5" }
 ];
+
+const divPerguntas = document.getElementById("perguntas");
+const formQuiz = document.getElementById("quizForm");
+const btnStart = document.getElementById("startQuiz");
+
+btnStart.addEventListener("click", () => {
+  divPerguntas.innerHTML = "";
+  perguntas.forEach((p, i) => {
+    const div = document.createElement("div");
+    div.classList.add("pergunta");
+    div.innerHTML = `
+      <p>${p.q}</p>
+      <input type="text" id="resposta-${i}" required>
+    `;
+    divPerguntas.appendChild(div);
+  });
+  formQuiz.style.display = "block";
+  btnStart.style.display = "none";
+});
+
+formQuiz.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  let pontos = 0;
+  perguntas.forEach((p, i) => {
+    const r = document.getElementById(`resposta-${i}`).value.trim();
+    if (r === p.a) pontos++;
+  });
+
+  const aluno = document.getElementById("aluno").value;
+
+  await fetch("/ranking", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nome: aluno, pontos })
+  });
+
+  alert(`Parabéns ${aluno}! Você fez ${pontos} pontos.`);
+  window.location.href = "ranking.html";
+});
