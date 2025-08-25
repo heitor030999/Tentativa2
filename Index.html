@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz 5º Ano</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz 5º Ano</h1>
+
+    <label>Escolha o aluno:
+      <select id="aluno">
+        <option>Laura</option>
+        <option>Ana</option>
+        <option>Laura Isabella</option>
+        <option>Isabelly</option>
+        <option>Nicolas</option>
+        <option>Heitor</option>
+        <option>Enzo</option>
+        <option>Ana Luiza</option>
+        <option>Melissa</option>
+        <option>Léia</option>
+      </select>
+    </label>
+    
+    <button id="startQuiz" class="btn">Iniciar Quiz</button>
+
+    <form id="quizForm" style="display:none;">
+      <div id="perguntas"></div>
+      <button type="submit" class="btn submit">Enviar Quiz</button>
+    </form>
+  </div>
+</body>
+</html>
